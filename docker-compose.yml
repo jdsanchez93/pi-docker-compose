@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+
+  garage-webcam:
+    image: my-python-app
+    command: python -u s3-upload.py garage-pi-webcam-images https://sqs.us-west-1.amazonaws.com/726238976559/pi-webcam-queue
+    restart: always
+    volumes:
+      - /opt/vc:/opt/vc
+      - ../garage-webcam/scripts:/usr/src/app
+    devices:
+      - /dev/video0
+    working_dir: /usr/src/app
+    env_file: .env
+
+  smart-light-service:
+    image: jdeeezy/smart-light-service:0.0.1-arm32
+    restart: always
+    ports:
+      - "3000:3000"
+      - "6666:6666/udp"
+      - "6667:6667/udp"
+    env_file: .env
