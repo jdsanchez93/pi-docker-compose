@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
   garage-webcam:
-    image: my-python-app
+    image: my-python-app:0.0.1 # docker image built locally
     command: python -u s3-upload.py garage-pi-webcam-images https://sqs.us-west-1.amazonaws.com/726238976559/pi-webcam-queue
     restart: always
     volumes:
