@@ -15,7 +15,7 @@ services:
     env_file: .env
 
   smart-light-service:
-    image: jdeeezy/smart-light-service:0.0.1-arm32
+    image: jdeeezy/smart-light-service:0.0.2-arm
     restart: always
     ports:
       - "3000:3000"
